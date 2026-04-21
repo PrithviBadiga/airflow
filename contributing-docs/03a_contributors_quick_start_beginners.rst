@@ -171,9 +171,19 @@ Option B – One-Click GitHub Codespaces
 
       docker info
 
-   If ``docker info`` fails, try rebuilding the Codespace container
-   (Command Palette → *Codespaces: Rebuild Container*) or restarting
-   the Codespace from the GitHub Codespaces dashboard.
+   If ``docker info`` fails, or ``breeze start-airflow`` later reports that Docker
+   is not running, try the following in the Codespace terminal:
+
+   .. code-block:: bash
+
+      ls -la /var/run/docker.sock
+      groups $USER
+
+   You should see the Docker socket present and ``docker`` in the group list.
+   If the issue persists, restart the Codespace from the GitHub Codespaces dashboard
+   or rebuild the container (Command Palette → *Codespaces: Rebuild Container*).
+   For more detailed troubleshooting, see
+   `Setup and develop using GitHub Codespaces <quick-start-ide/contributors_quick_start_codespaces.rst>`_.
 
 5. Install Breeze and start the development container
 
